@@ -1,4 +1,6 @@
 var game;
+var mic; //P5 Lib
+var vol;
 
 window.onload = function() {
 	game = new Phaser.Game(960, 640, Phaser.AUTO, "");
@@ -20,6 +22,12 @@ playGame.prototype = {
          
      },
      create: function(){
+
+        
+
+        mic = new p5.AudioIn();
+        mic.start();
+        vol = mic.getLevel();
          
           game.scale.pageAlignHorizontally = true;
           game.scale.pageAlignVertically = true;
@@ -59,25 +67,38 @@ playGame.prototype = {
      },
      startLevel: function(){
           this.play.destroy();
-          this.spaceship.body.velocity.setTo(200, 0);
-          this.spaceship.body.gravity.y = 1000;
-          this.engineOn();  
+          this.spaceship.body.velocity.setTo(80, 0);
+          this.spaceship.body.gravity.y = 100; //1000
+          //this.engineOn();  
           this.emitter.start(false, 3000, 200);
-          game.input.onDown.remove(this.startLevel, this);
-          game.input.onDown.add(this.engineOn, this); 
-          game.input.onUp.add(this.engineOff, this); 
+        
+        game.input.onDown.remove(this.startLevel, this); 
+        game.input.onDown.add(this.engineOn, this); 
+        //game.input.onUp.add(this.engineOff, this); 
      },
      engineOn: function(){
-          this.spaceship.body.acceleration.y = -2000;
+
+          //this.spaceship.body.acceleration.y = -2000;
+          //this.physics.arcade.moveToXY(player,500,600,0,3000);
+          //this.physics.arcade.moveToXY(this.spaceship, 126, 160);
+        //console.log(vol*-200000000);
      },
      engineOff: function(){
-          this.spaceship.body.acceleration.y = 0;          
+          //this.spaceship.body.acceleration.y = 0;   
+         // this.physics.arcade.moveToXY(this.spaceship, 0, 0);       
      },
      update: function(){ 
+        
+        vol = mic.getLevel();
+        
           if(!this.gameOver){  
+            
+            this.spaceship.body.acceleration.y = vol*-5000;
+           // console.log(vol*-200);
+
                game.physics.arcade.collide(this.spaceship, this.mapLayer, function(){
-                    game.input.onDown.remove(this.engineOn, this); 
-                    game.input.onUp.remove(this.engineOff, this);
+                    //game.input.onDown.remove(this.engineOn, this); 
+                    //game.input.onUp.remove(this.engineOff, this);
                     this.emitter.on = false;
                     var explosion = game.add.emitter(this.spaceship.x, this.spaceship.y, 200);
                     explosion.makeParticles("particle");
@@ -93,12 +114,16 @@ playGame.prototype = {
                     game.time.events.add(Phaser.Timer.SECOND * 1, function(){
                          game.state.start("PlayGame");
                     }, this);
-               }, null, this);               
+               }, null, this); 
+
                this.emitter.x = this.spaceship.x;
                this.emitter.y = this.spaceship.y;
+               
                if(this.spaceship.x > game.width + this.spaceship.width){
                     game.state.start("PlayGame");    
                }
           }
+
+          
      }
 }
