@@ -14,7 +14,7 @@
     <allow-intent href="https://*/*" />
 	
 	<preference name="orienation" value="portrait" />
-	<preference name="orienation" value="portrait" />
+	<preference name="fullscreen" value="true" />
 
     <platform name="android">
         <allow-intent href="market:*" />
