@@ -2,6 +2,19 @@ var game;
 var mic; //P5 Lib
 var vol;
 
+// Check microphone permission
+var permissions = cordova.plugins.permissions;
+
+permissions.requestPermission(permissions.CAPTURE_AUDIO_OUTPUT, success, error);
+ 
+function error() {
+  console.warn('Camera permission is not turned on');
+}
+ 
+function success( status ) {
+  if( !status.hasPermission ) error();
+}
+
 window.onload = function() {
 	game = new Phaser.Game(960, 640, Phaser.AUTO, "");
      game.state.add("PlayGame", playGame);
