@@ -23,7 +23,7 @@ playGame.prototype = {
      },
      create: function(){
 
-        
+      var style = { font: "25px Arial", fill: "#ff0044", align: "center" };
 
         mic = new p5.AudioIn();
         mic.start();
@@ -49,6 +49,10 @@ playGame.prototype = {
           this.emitter.setAlpha(0.5, 1);
           this.emitter.minParticleScale = 0.5;
           this.emitter.maxParticleScale = 1;  
+
+          // Text for log mic get level
+          this.text = game.add.text(game.world.centerX, game.world.centerY, "Level do microfone", style);
+          this.text.anchor.set(0.1);
          
         
          //var play = game.add.sprite(50, game.height / 2, "play");
@@ -93,8 +97,9 @@ playGame.prototype = {
         
           if(!this.gameOver){  
             
-            this.spaceship.body.acceleration.y = vol*-5000;
+          this.spaceship.body.acceleration.y = vol*-5000;
            // console.log(vol*-200);
+           this.text.setText("Vol: " + vol*-5000);
 
                game.physics.arcade.collide(this.spaceship, this.mapLayer, function(){
                     //game.input.onDown.remove(this.engineOn, this); 
