@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="br.eti.michael.tcc.jogoaviao" version="0.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="br.eti.michael.tcc.jogoaviao" version="0.1.1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>AviaoPapel</name>
     <description>
         Jogo desenvolvido para o Trabalho de conclusão de curso do aluno Michael e Jefferson da UNICAMP.
     </description>
     <author email="michaelralmeida@gmail.com" href="https://michael.eti.br">
-        Michael
+        Michael Almeida
     </author>
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />
@@ -15,6 +15,9 @@
     <plugin name="cordova-plugin-android-permissions" source="npm" spec="~1.0.0" />
     <plugin name="cordova-plugin-splashscreen" source="npm" spec="~3.2.1" />
     <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1" />  
+    <plugin name="cordova-plugin-media-capture" source="npm" spec="~1.2.0" />
+    <plugin name="cordova-plugin-device" source="npm" spec="~1.1.1" />
+    <plugin name="cordova-plugin-media" source="npm" spec="~2.2.0" />
     <platform name="android">
         <icon density="ldpi" src="www/res/icon/android/drawable-ldpi-icon.png" />
         <icon density="mdpi" src="www/res/icon/android/drawable-mdpi-icon.png" />
