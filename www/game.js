@@ -5,12 +5,15 @@ var vol;
 var counter = 0;
 var countWin = 0;
 var playGame = function (game) { };
+
 window.onload = function () {
   game = new Phaser.Game(960, 640, Phaser.AUTO, "");
   game.state.add("PlayGame", playGame);
   game.state.start("PlayGame");
 }
+//This is a object
 playGame.prototype = {
+  // This is a method
   preload: function () {
     game.load.image("airplane", "assets/sprites/airplane.png");
     game.load.image("particle", "assets/sprites/particle.png");
@@ -48,7 +51,7 @@ playGame.prototype = {
     this.text = game.add.text(game.world.centerX, game.world.centerY, "Level do microfone", style);
     this.text.anchor.set(0.1);
     // Set the airnplane paper
-    this.airplane = game.add.sprite(50, game.height / 2, "airplane");
+    this.airplane = game.add.sprite(50, 200, "airplane");
     this.airplane.anchor.set(0.5);
     game.physics.enable(this.airplane, Phaser.Physics.ARCADE);
     game.input.onDown.add(this.startLevel, this);
@@ -71,18 +74,20 @@ playGame.prototype = {
     mic.start();
     // When the user click to start the game, the start level will be removed
     game.input.onDown.remove(this.startLevel, this);
+    counter = 0;
+    countWin = 0;
     game.time.events.loop(Phaser.Timer.SECOND, this.updateCounter, this);
   },
   engineOn: function () {
     vol = mic.getLevel();
-    this.text.setText(vol);
+    //this.text.setText(vol);
     // The best match is vol between 2 and 10 
     if ((vol * 100 > 2) && (vol * 100 < 10)) {
       this.airplane.body.velocity.y = -20;
-      this.text.setText("Continue asim!");
+      //this.text.setText("Continue asim!");
     } else if (vol != 0) {
       this.airplane.body.velocity.y = 50;
-      this.text.setText("Hmm..");
+      //this.text.setText("Hmm..");
     }
   },
   winGame: function () {
@@ -90,15 +95,13 @@ playGame.prototype = {
       mic.stop();
       //winImage.alpha = 1;
       this.text.setText("Você ganhou! Levou:" + counter);
-      game.add.tween(winImage).to({ alpha: 1 }, 500, "Linear", true);
-      //game.add.tween(winImage).to( { angle: 45 }, 500, Phaser.Easing.Linear.None, true);
-      game.add.tween(winImage.scale).to( { x: 1.5, y: 1.5 }, 500, Phaser.Easing.Linear.None, true);
-      //game.add.tween(winImage).from({ y: -200 }, 500, Phaser.Easing.Bounce.Out, true);
-      countWin = 0;
+      //game.add.tween(winImage).to({ alpha: 1 }, 500, "Linear", true);
+      //game.add.tween(winImage.scale).to( { x: 1.5, y: 1.5 }, 500, Phaser.Easing.Linear.None, true);
     }
   },
   updateCounter: function() {
     counter++;
+    this.text.setText(counter);
 },
   update: function () {
     // Call the engineOn fuction
@@ -121,9 +124,10 @@ playGame.prototype = {
         this.airplane.kill();
         this.gameOver = true;
         mic.stop();
-        game.time.events.add(Phaser.Timer.SECOND * 2, function () {
-          game.state.start("PlayGame");
+        game.time.events.add(Phaser.Timer.SECOND * 5, function () {
           this.text.setText("Você perdeu! Levou:" + counter);
+          game.state.start("PlayGame");
+          //game.time.events.remove(this);
         }, this);
       }, null, this);
       this.emitter.x = this.airplane.x;
@@ -132,7 +136,7 @@ playGame.prototype = {
       if (this.airplane.x > game.width + this.airplane.width) {
         countWin++;
         this.winGame();
-        game.time.events.add(Phaser.Timer.SECOND * 10, function () {
+        game.time.events.add(Phaser.Timer.SECOND * 5, function () {
           game.state.start("PlayGame");
         }, this);
       }
