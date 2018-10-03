@@ -22,7 +22,12 @@ playGame.prototype = {
     game.load.tilemap("level_0001", "assets/maps/level_0001.json", null, Phaser.Tilemap.TILED_JSON);
     game.load.image("deadly", "assets/maps/tiles/deadly.png");
     game.load.image("congrats", "assets/sprites/congrats.png");
-    game.load.spritesheet('play', 'assets/sprites/letsplay.png', 400, 306, 3);
+    // volume bar
+    game.load.image("vol_bar_01", "assets/sprites/vol_bar_01.png");
+    game.load.image("vol_bar_02", "assets/sprites/vol_bar_02.png");
+    game.load.image("vol_bar_03", "assets/sprites/vol_bar_03.png");
+    game.load.image("vol_bar_04", "assets/sprites/vol_bar_04.png");
+    game.load.image("vol_bar_05", "assets/sprites/vol_bar_05.png");
   },
   create: function () {
     // Text 
@@ -51,7 +56,7 @@ playGame.prototype = {
     this.text = game.add.text(game.world.centerX, game.world.centerY, "Level do microfone", style);
     this.text.anchor.set(0.1);
     // Set the airnplane paper
-    this.airplane = game.add.sprite(50, 200, "airplane");
+    this.airplane = game.add.sprite(50, 250, "airplane");
     this.airplane.anchor.set(0.5);
     game.physics.enable(this.airplane, Phaser.Physics.ARCADE);
     game.input.onDown.add(this.startLevel, this);
@@ -65,6 +70,12 @@ playGame.prototype = {
     winImage = game.add.sprite(50, game.height / 2, "congrats");
     winImage.anchor.setTo(-0.6, 0.5);
     winImage.alpha = 0;
+    // Volume bar
+    vol_bar_01 = game.add.sprite(0, 0, "vol_bar_01");
+    vol_bar_02 = game.add.sprite(0, 0, "vol_bar_02");
+    vol_bar_03 = game.add.sprite(0, 0, "vol_bar_03");
+    vol_bar_04 = game.add.sprite(0, 0, "vol_bar_04");
+    vol_bar_05 = game.add.sprite(0, 0, "vol_bar_05");
   },
   startLevel: function () {
     game.add.tween(playImg).to({ alpha: 0 }, 500, Phaser.Easing.Linear.None, true);
@@ -79,24 +90,34 @@ playGame.prototype = {
     game.time.events.loop(Phaser.Timer.SECOND, this.updateCounter, this);
   },
   engineOn: function () {
-    vol = mic.getLevel();
-    //this.text.setText(vol);
-    // The best match is vol between 2 and 10 
+    vol_bar_01.alpha = 0;
+    vol_bar_02.alpha = 0;
+    vol_bar_03.alpha = 0;
+    vol_bar_04.alpha = 0;
+    vol_bar_05.alpha = 0;
+    vol = mic.getLevel(); 
+
     if ((vol * 100 > 2) && (vol * 100 < 10)) {
       this.airplane.body.velocity.y = -20;
-      //this.text.setText("Continue asim!");
-    } else if (vol != 0) {
+      vol_bar_03.alpha = 1;
+    } else if ((vol != 0) && (vol * 100 < 1)) {
+      vol_bar_01.alpha = 1;
       this.airplane.body.velocity.y = 50;
-      //this.text.setText("Hmm..");
+    } else if ((vol != 0) && (vol * 100 < 2)) {
+      vol_bar_02.alpha = 1;
+      this.airplane.body.velocity.y = 50;
+    } else if ((vol != 0) && (vol * 100 < 15)) {
+      vol_bar_04.alpha = 1;
+      this.airplane.body.velocity.y = 50;
+    } else if ((vol != 0) && (vol * 100 > 15)) {
+      vol_bar_05.alpha = 1;
+      this.airplane.body.velocity.y = 50;
     }
   },
   winGame: function () {
     if (countWin == 1) {
       mic.stop();
-      //winImage.alpha = 1;
       this.text.setText("Você ganhou! Levou:" + counter);
-      //game.add.tween(winImage).to({ alpha: 1 }, 500, "Linear", true);
-      //game.add.tween(winImage.scale).to( { x: 1.5, y: 1.5 }, 500, Phaser.Easing.Linear.None, true);
     }
   },
   updateCounter: function() {
