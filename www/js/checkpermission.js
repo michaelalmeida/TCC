@@ -1,4 +1,8 @@
 (function(){
+
+  // force orientation
+  screen.orientation.lock('landscape');
+
   var permissions = cordova.plugins.permissions;
 
   permissions.requestPermission(permissions.RECORD_AUDIO, success, error);

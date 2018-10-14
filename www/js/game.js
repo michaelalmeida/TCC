@@ -113,16 +113,16 @@ playGame.prototype = {
       vol_bar_03.alpha = 1;
     } else if ((vol != 0) && (vol * 100 < 1)) {
       vol_bar_01.alpha = 1;
-      this.airplane.body.velocity.y = 50;
+      this.airplane.body.velocity.y = 80;
     } else if ((vol != 0) && (vol * 100 < 2)) {
       vol_bar_02.alpha = 1;
-      this.airplane.body.velocity.y = 50;
+      this.airplane.body.velocity.y = 80;
     } else if ((vol != 0) && (vol * 100 < 15)) {
       vol_bar_04.alpha = 1;
-      this.airplane.body.velocity.y = 50;
+      this.airplane.body.velocity.y = 80;
     } else if ((vol != 0) && (vol * 100 > 15)) {
       vol_bar_05.alpha = 1;
-      this.airplane.body.velocity.y = 50;
+      this.airplane.body.velocity.y = -80;
     }
   },
   winGame: function () {
@@ -142,12 +142,13 @@ playGame.prototype = {
   updateCounter: function() {
     counter++;
   },
-  saveDb : function(name, date, time) {
+  saveDb : function(name, date, time, result) {
     if (countWin == 1) {
       // Function used to save the game statistic
       firebase.database().ref('pacientes/' + name).push({
         data: date,
-        duracao: time
+        duracao: time,
+        ganhou: result
       });
     }
   },
@@ -175,7 +176,7 @@ playGame.prototype = {
         game.time.events.add(Phaser.Timer.SECOND * 5, function () {
           countWin++;
           // Save the score
-          this.saveDb("Michael", dmy, counter);
+          this.saveDb("Michael", dmy, counter, "não");
           //this.text.setText("Você perdeu! Levou:" + counter);
           game.state.start("PlayGame");
         }, this);
@@ -186,7 +187,7 @@ playGame.prototype = {
       if (this.airplane.x > game.width + this.airplane.width) {   
         countWin++;
         // Save the score
-        this.saveDb("Michael", dmy, counter);
+        this.saveDb("Michael", dmy, counter, "sim");
         // Win animation
         this.winGame();
         // Play next
