@@ -1,8 +1,9 @@
 (function(){
-
+  
   // force orientation
-  screen.orientation.lock('landscape');
-
+  screen.orientation.lock('landscape-primary');
+  //console.log('Orientation is ' + screen.orientation.type);
+  //console.log(screen.orientation.type);
   var permissions = cordova.plugins.permissions;
 
   permissions.requestPermission(permissions.RECORD_AUDIO, success, error);

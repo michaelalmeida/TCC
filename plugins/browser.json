@@ -66,6 +66,9 @@
         },
         "cordova-plugin-android-permissions": {
             "PACKAGE_NAME": "br.eti.michael.tcc.jogoaviao"
+        },
+        "cordova-plugin-screen-orientation": {
+            "PACKAGE_NAME": "br.eti.michael.tcc.jogoaviao"
         }
     },
     "dependent_plugins": {
