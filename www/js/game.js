@@ -4,7 +4,9 @@ var mic; //P5 Lib
 var vol;
 var counter = 0;
 var countWin = 0;
-var database = firebase.database(); //database
+
+var firebaseThings = window.FirebaseDatabasePlugin.ref('pacientes');
+
 var playGame = function (game) { };
 
 window.onload = function () {
@@ -174,7 +176,9 @@ playGame.prototype = {
       this.emitter.y = this.airplane.y;
       // if the user win
       if (this.airplane.x > game.width + this.airplane.width) {
-        this.writeUserData("michael", "14/10/2012", counter, counter);
+        //this.writeUserData("michael", "14/10/2012", counter, counter);
+        firebaseThings.child('nome').setValue('Michael');
+
         countWin++;
         this.winGame();
         game.time.events.add(Phaser.Timer.SECOND * 10, function () {
