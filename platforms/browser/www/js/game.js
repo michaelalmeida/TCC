@@ -4,7 +4,15 @@ var mic; //P5 Lib
 var vol;
 var counter = 0;
 var countWin = 0;
-var database = firebase.database(); //database
+
+var todayIs = new Date();
+var day = todayIs.getDate();
+var month = todayIs.getMonth() + 1;
+var year = todayIs.getFullYear();
+var dmy =  day + "/" + month + "/" + year;
+
+var database = firebase.database();
+
 var playGame = function (game) { };
 
 window.onload = function () {
@@ -119,9 +127,8 @@ playGame.prototype = {
   },
   winGame: function () {
     if (countWin == 1) {
+      // Stop microphone recording
       mic.stop();
-      //this.text = game.add.text(game.world.centerX, game.world.centerY, "Parabéns:" + counter, this.style);
-      //this.text.anchor.set(0.1);
       // Confete
       emitter = game.add.emitter(game.world.centerX, -200, 200);
       emitter.makeParticles(['confete_blue', 'confete_yellow', 'confete_rose']);
@@ -135,13 +142,14 @@ playGame.prototype = {
   updateCounter: function() {
     counter++;
   },
-  writeUserData : function(nome, data, duracao, pontuacao) {
-    // Function used to save the game statistic
-    firebase.database().ref('pacientes/' + nome).set({
-      data: day,
-      duracao: time,
-      pontuacao: score
-    });
+  saveDb : function(name, date, time) {
+    if (countWin == 1) {
+      // Function used to save the game statistic
+      firebase.database().ref('pacientes/' + name).push({
+        data: date,
+        duracao: time
+      });
+    }
   },
   update: function () {
     // Call the engineOn fuction
@@ -165,18 +173,23 @@ playGame.prototype = {
         this.gameOver = true;
         mic.stop();
         game.time.events.add(Phaser.Timer.SECOND * 5, function () {
-          this.text.setText("Você perdeu! Levou:" + counter);
+          countWin++;
+          // Save the score
+          this.saveDb("Michael", dmy, counter);
+          //this.text.setText("Você perdeu! Levou:" + counter);
           game.state.start("PlayGame");
-          //game.time.events.remove(this);
         }, this);
       }, null, this);
       this.emitter.x = this.airplane.x;
       this.emitter.y = this.airplane.y;
       // if the user win
-      if (this.airplane.x > game.width + this.airplane.width) {
-        this.writeUserData("michael", "14/10/2012", counter, counter);
+      if (this.airplane.x > game.width + this.airplane.width) {   
         countWin++;
+        // Save the score
+        this.saveDb("Michael", dmy, counter);
+        // Win animation
         this.winGame();
+        // Play next
         game.time.events.add(Phaser.Timer.SECOND * 10, function () {
           game.state.start("PlayGame");
         }, this);
