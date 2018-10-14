@@ -5,7 +5,7 @@ var vol;
 var counter = 0;
 var countWin = 0;
 
-var firebaseThings = window.FirebaseDatabasePlugin.ref('pacientes');
+//var firebaseThings = window.FirebaseDatabasePlugin.ref('pacientes');
 
 var playGame = function (game) { };
 
