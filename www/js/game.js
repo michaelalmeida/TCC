@@ -113,16 +113,16 @@ playGame.prototype = {
       vol_bar_03.alpha = 1;
     } else if ((vol != 0) && (vol * 100 < 1)) {
       vol_bar_01.alpha = 1;
-      this.airplane.body.velocity.y = 80;
+      this.airplane.body.velocity.y = 60;
     } else if ((vol != 0) && (vol * 100 < 2)) {
       vol_bar_02.alpha = 1;
-      this.airplane.body.velocity.y = 80;
+      this.airplane.body.velocity.y = 60;
     } else if ((vol != 0) && (vol * 100 < 15)) {
       vol_bar_04.alpha = 1;
-      this.airplane.body.velocity.y = 80;
+      this.airplane.body.velocity.y = 60;
     } else if ((vol != 0) && (vol * 100 > 15)) {
       vol_bar_05.alpha = 1;
-      this.airplane.body.velocity.y = -80;
+      this.airplane.body.velocity.y = -60;
     }
   },
   winGame: function () {
