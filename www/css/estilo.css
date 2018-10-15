@@ -1,0 +1,30 @@
+body{
+    background: #7cc7ff;
+    padding:0px;
+    margin:0px;
+}
+
+.form {
+    padding: 10px 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    font-size: 18px;
+    background: #ffffff;
+}
+
+.form input {
+    margin: 0 0 0 20px;
+    padding: 5px;
+}
+
+.form .btn {
+    margin: 0 20px 0 0;
+    float: right;
+    font-size: 18px;
+    border: 0;
+    padding: 5px;
+    text-transform: uppercase;
+    background: #397caf;
+    color: #ffffff;
+}

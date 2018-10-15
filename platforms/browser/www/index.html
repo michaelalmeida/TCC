@@ -3,15 +3,8 @@
 	<head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
-	<style type="text/css">
-		body{
-			background: #7cc7ff;
-			padding:0px;
-			margin:0px;
-		}
-	</style>
+	<link rel="stylesheet" type="text/css" href="css/estilo.css" />
 	<!--<script type="text/javascript" src="cordova.js"></script>-->
-
 	<script src="https://www.gstatic.com/firebasejs/5.5.4/firebase.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.5.4/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/5.5.4/firebase-database.js"></script>
@@ -28,14 +21,17 @@
 			};
 			firebase.initializeApp(config);
 	</script>
-
 	<script type="text/javascript" src="js/phaser.min.js"></script>
 	<script type="text/javascript" src="js/checkpermission.js"></script>
 	<script type="text/javascript" src="assets/p5/p5.js"></script>
 	<script type="text/javascript" src="assets/p5/p5.sound.js"></script>
 	<script type="text/javascript" src ="js/game.js"></script>
-	
+	<script type="text/javascript" src ="js/form.js"></script>
 	</head>
-	<body>
+	<body>	
+	<div class="form" id="form">
+		<input id="pacienteNome" type="text" name="nome" placeholder="Nome do paciente">
+		<button class="btn" type="button" onclick="salvarNome()">Salvar</button>
+	</div>
 	</body>
 </html>

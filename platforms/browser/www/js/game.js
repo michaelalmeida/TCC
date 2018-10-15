@@ -4,6 +4,7 @@ var mic; //P5 Lib
 var vol;
 var counter = 0;
 var countWin = 0;
+var paciente;
 
 var todayIs = new Date();
 var day = todayIs.getDate();
@@ -99,6 +100,12 @@ playGame.prototype = {
     counter = 0;
     countWin = 0;
     game.time.events.loop(Phaser.Timer.SECOND, this.updateCounter, this);
+    // Name and form
+    if(localStorage.getItem("paciente") == null) {
+      localStorage.setItem("paciente", "anonimo");
+    }
+    paciente = localStorage.getItem("paciente");
+    document.getElementById("form").style.display = "none";
   },
   engineOn: function () {
     vol_bar_01.alpha = 0;
@@ -113,16 +120,16 @@ playGame.prototype = {
       vol_bar_03.alpha = 1;
     } else if ((vol != 0) && (vol * 100 < 1)) {
       vol_bar_01.alpha = 1;
-      this.airplane.body.velocity.y = 80;
+      this.airplane.body.velocity.y = 60;
     } else if ((vol != 0) && (vol * 100 < 2)) {
       vol_bar_02.alpha = 1;
-      this.airplane.body.velocity.y = 80;
+      this.airplane.body.velocity.y = 60;
     } else if ((vol != 0) && (vol * 100 < 15)) {
       vol_bar_04.alpha = 1;
-      this.airplane.body.velocity.y = 80;
+      this.airplane.body.velocity.y = 60;
     } else if ((vol != 0) && (vol * 100 > 15)) {
       vol_bar_05.alpha = 1;
-      this.airplane.body.velocity.y = -80;
+      this.airplane.body.velocity.y = -60;
     }
   },
   winGame: function () {
@@ -176,9 +183,10 @@ playGame.prototype = {
         game.time.events.add(Phaser.Timer.SECOND * 5, function () {
           countWin++;
           // Save the score
-          this.saveDb("Michael", dmy, counter, "não");
+          this.saveDb(paciente, dmy, counter, "não");
           //this.text.setText("Você perdeu! Levou:" + counter);
           game.state.start("PlayGame");
+          document.getElementById("form").style.display = "block";
         }, this);
       }, null, this);
       this.emitter.x = this.airplane.x;
@@ -187,12 +195,13 @@ playGame.prototype = {
       if (this.airplane.x > game.width + this.airplane.width) {   
         countWin++;
         // Save the score
-        this.saveDb("Michael", dmy, counter, "sim");
+        this.saveDb(paciente, dmy, counter, "sim");
         // Win animation
         this.winGame();
         // Play next
         game.time.events.add(Phaser.Timer.SECOND * 10, function () {
           game.state.start("PlayGame");
+          document.getElementById("form").style.display = "block";
         }, this);
       }
     }
