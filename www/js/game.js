@@ -5,6 +5,7 @@ var vol;
 var counter = 0;
 var countWin = 0;
 var paciente;
+var score = 0;
 
 var todayIs = new Date();
 var day = todayIs.getDate();
@@ -32,6 +33,7 @@ playGame.prototype = {
     game.load.tilemap("level_0001", "assets/maps/level_0001.json", null, Phaser.Tilemap.TILED_JSON);
     game.load.image("deadly", "assets/maps/tiles/deadly.png");
     game.load.image("hands", "assets/sprites/hands_congrats.png");
+    game.load.spritesheet('button', 'assets/sprites/button.png', 300, 70);
     // volume bar
     game.load.image("vol_bar_01", "assets/sprites/vol_bar_01.png");
     game.load.image("vol_bar_02", "assets/sprites/vol_bar_02.png");
@@ -66,20 +68,23 @@ playGame.prototype = {
     this.emitter.setAlpha(0.5, 1);
     this.emitter.minParticleScale = 0.5;
     this.emitter.maxParticleScale = 1;
-    // Text for log mic get level
-    //this.text = game.add.text(game.world.centerX, game.world.centerY, "Level do microfone", style);
-    //this.text.anchor.set(0.1);
     // Set the airnplane paper
     this.airplane = game.add.sprite(50, 250, "airplane");
     this.airplane.anchor.set(0.5);
-    game.physics.enable(this.airplane, Phaser.Physics.ARCADE);
-    game.input.onDown.add(this.startLevel, this);
-    this.gameOver = false;
+  
     // The initial image for start the game
     playImg = game.add.sprite(50, game.height / 2, "play");
     playImg.anchor.setTo(-0.5, 0.5);
     playImg.alpha = 0;
     game.add.tween(playImg).to({ alpha: 1 }, 500, "Linear", true);
+
+    playImg.inputEnabled = true;
+    game.physics.enable(this.airplane, Phaser.Physics.ARCADE);
+    playImg.events.onInputDown.add(this.startLevel, this);
+    //game.input.onDown.add(this.startLevel, this);
+    this.gameOver = false;
+    
+    button = game.add.button(645, 490, 'button', this.openPlayerName, this, 1, 0, 0);
     
     //winImage.alpha = 0;
     // Volume bar
@@ -92,7 +97,7 @@ playGame.prototype = {
   startLevel: function () {
     game.add.tween(playImg).to({ alpha: 0 }, 500, Phaser.Easing.Linear.None, true);
     game.add.tween(playImg.scale).to({ x: 0, y: 0 }, 1000, Phaser.Easing.Linear.None, true);
-    this.airplane.body.velocity.setTo(80, 0);
+    this.airplane.body.velocity.setTo(100, 0);
     this.emitter.start(false, 3000, 200);
     mic.start();
     // When the user click to start the game, the start level will be removed
@@ -105,7 +110,7 @@ playGame.prototype = {
       localStorage.setItem("paciente", "anonimo");
     }
     paciente = localStorage.getItem("paciente");
-    document.getElementById("form").style.display = "none";
+    button.destroy();
   },
   engineOn: function () {
     vol_bar_01.alpha = 0;
@@ -118,6 +123,7 @@ playGame.prototype = {
     if ((vol * 100 > 2) && (vol * 100 < 10)) {
       this.airplane.body.velocity.y = -10;
       vol_bar_03.alpha = 1;
+      score++;
     } else if ((vol != 0) && (vol * 100 < 1)) {
       vol_bar_01.alpha = 1;
       this.airplane.body.velocity.y = 60;
@@ -149,15 +155,19 @@ playGame.prototype = {
   updateCounter: function() {
     counter++;
   },
-  saveDb : function(name, date, time, result) {
+  saveDb : function(name, date, time, result, score) {
     if (countWin == 1) {
       // Function used to save the game statistic
       firebase.database().ref('pacientes/' + name).push({
         data: date,
         duracao: time,
-        ganhou: result
+        ganhou: result,
+        pontuacao: score
       });
     }
+  },
+  openPlayerName : function() {
+    document.getElementById("form").style.display = "block";
   },
   update: function () {
     // Call the engineOn fuction
@@ -183,10 +193,10 @@ playGame.prototype = {
         game.time.events.add(Phaser.Timer.SECOND * 5, function () {
           countWin++;
           // Save the score
-          this.saveDb(paciente, dmy, counter, "não");
+          this.saveDb(paciente, dmy, counter, "não", score);
           //this.text.setText("Você perdeu! Levou:" + counter);
           game.state.start("PlayGame");
-          document.getElementById("form").style.display = "block";
+          score = 0;
         }, this);
       }, null, this);
       this.emitter.x = this.airplane.x;
@@ -195,13 +205,13 @@ playGame.prototype = {
       if (this.airplane.x > game.width + this.airplane.width) {   
         countWin++;
         // Save the score
-        this.saveDb(paciente, dmy, counter, "sim");
+        this.saveDb(paciente, dmy, counter, "sim", score);
         // Win animation
         this.winGame();
         // Play next
         game.time.events.add(Phaser.Timer.SECOND * 10, function () {
           game.state.start("PlayGame");
-          document.getElementById("form").style.display = "block";
+          score = 0;
         }, this);
       }
     }

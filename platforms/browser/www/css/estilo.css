@@ -5,26 +5,57 @@ body{
 }
 
 .form {
-    padding: 10px 0;
+    display: none;
+    padding: 2%;
     position: absolute;
-    bottom: 0;
-    width: 100%;
-    font-size: 18px;
+    top: 0;
+    left: 0;
+    margin: 2%;
+    width: 92%;
     background: #ffffff;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+    -webkit-box-shadow: 5px 5px 24px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 5px 5px 24px 0px rgba(0,0,0,0.2);
+    box-shadow: 5px 5px 24px 0px rgba(0,0,0,0.2);
 }
 
 .form input {
-    margin: 0 0 0 20px;
-    padding: 5px;
+    font-size: 24px;
+    padding: 2%;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+    border: 0;
+    background: #eeeeee;
 }
 
 .form .btn {
-    margin: 0 20px 0 0;
+    font-size: 24px;
     float: right;
-    font-size: 18px;
     border: 0;
-    padding: 5px;
+    padding: 2%;
     text-transform: uppercase;
     background: #397caf;
     color: #ffffff;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+}
+
+@media (max-width: 550px) 
+{
+    .form input {
+        margin: 0;
+        padding: 5%;
+        width: 90%;
+    }
+    
+    .form .btn {
+        margin: 20px 0 0 0;
+        padding: 3%;
+
+    }
+    
 }
