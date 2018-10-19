@@ -167,7 +167,7 @@ playGame.prototype = {
     }
   },
   openPlayerName : function() {
-    document.getElementById("form").style.display = "block";
+    window.location.replace("form.html");
   },
   update: function () {
     // Call the engineOn fuction

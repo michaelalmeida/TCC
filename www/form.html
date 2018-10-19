@@ -21,13 +21,12 @@
 			};
 			firebase.initializeApp(config);
 	</script>
-	<script type="text/javascript" src="js/phaser.min.js"></script>
-	<script type="text/javascript" src="js/checkpermission.js"></script>
-	<script type="text/javascript" src="assets/p5/p5.js"></script>
-	<script type="text/javascript" src="assets/p5/p5.sound.js"></script>
-	<script type="text/javascript" src ="js/game.js"></script>
 	<script type="text/javascript" src ="js/form.js"></script>
 	</head>
 	<body>	
+	<div class="form" id="form">
+		<input id="pacienteNome" type="text" name="nome" placeholder="Nome do paciente">
+		<button class="btn" type="button" onclick="salvarNome()">Salvar</button>
+	</div>
 	</body>
 </html>

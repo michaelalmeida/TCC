@@ -69,6 +69,9 @@
         },
         "cordova-plugin-screen-orientation": {
             "PACKAGE_NAME": "br.eti.michael.tcc.jogoaviao"
+        },
+        "cordova-custom-config": {
+            "PACKAGE_NAME": "br.eti.michael.tcc.jogoaviao"
         }
     },
     "dependent_plugins": {

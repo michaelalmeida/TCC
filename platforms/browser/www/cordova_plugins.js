@@ -644,7 +644,8 @@ module.exports.metadata =
     "cordova-plugin-vibration": "2.1.6",
     "cordova-plugin-whitelist": "1.2.2",
     "cordova-plugin-android-permissions": "1.0.0",
-    "cordova-plugin-screen-orientation": "3.0.1"
+    "cordova-plugin-screen-orientation": "3.0.1",
+    "cordova-custom-config": "5.0.2"
 }
 // BOTTOM OF METADATA
 });
