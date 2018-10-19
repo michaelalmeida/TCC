@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="br.eti.michael.tcc.jogoaviao" version="0.2.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="br.eti.michael.tcc.jogoaviao" version="0.2.1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>AviaoPapel</name>
     <description>
         Jogo desenvolvido para o Trabalho de conclusão de curso do aluno Michael e Jefferson da UNICAMP.
