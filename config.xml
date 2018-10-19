@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="br.eti.michael.tcc.jogoaviao" version="0.1.1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="br.eti.michael.tcc.jogoaviao" version="0.1.38" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>AviaoPapel</name>
     <description>
         Jogo desenvolvido para o Trabalho de conclusão de curso do aluno Michael e Jefferson da UNICAMP.
@@ -12,13 +12,15 @@
     <preference name="android-minSdkVersion" value="14" />
 	<preference name="orienation" value="landscape" />
 	<preference name="fullscreen" value="true" />
+    <preference name="android-manifest/application/activity/@android:theme" value="@android:style/Theme.Light.NoTitleBar.Fullscreen"/>
+    <!-- plugins -->
     <plugin name="cordova-plugin-android-permissions" source="npm" spec="~1.0.0" />
     <plugin name="cordova-plugin-splashscreen" source="npm" spec="~3.2.1" />
     <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1" />  
     <plugin name="cordova-plugin-media-capture" source="npm" spec="~1.2.0" />
     <plugin name="cordova-plugin-device" source="npm" spec="~1.1.1" />
     <plugin name="cordova-plugin-media" source="npm" spec="~2.2.0" />
-    <plugin name="cordova-plugin-screen-orientation" source="npm" spec="~3.0.1" />
+    <plugin name="cordova-custom-config " source="npm" spec="~5.0.2" />
     <platform name="android">
         <icon density="ldpi" src="www/res/icon/android/drawable-ldpi-icon.png" />
         <icon density="mdpi" src="www/res/icon/android/drawable-mdpi-icon.png" />
@@ -39,6 +41,15 @@
         <splash density="port-xxhdpi" src="www/res/screen/android/drawable-port-xxhdpi-screen.png" />
         <splash density="port-xxxhdpi" src="www/res/screen/android/drawable-port-xxxhdpi-screen.png" />
     </platform>
+    <!-- custom config -->
+     <custom-config-file target="AndroidManifest.xml" parent="/*">
+        <supports-screens
+            android:xlargeScreens="true"
+            android:largeScreens="true"
+            android:smallScreens="true" />
+
+        <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    </custom-config-file>
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
