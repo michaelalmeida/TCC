@@ -1,12 +1,16 @@
 body{
-    background: #7cc7ff ;
+    background: #7cc7ff;
     padding:0px;
     margin:0px;
 }
 
 .form {
+    display: none;
     padding: 2%;
-    margin: 2%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 10% 2% 2% 2%;
     width: 92%;
     background: #ffffff;
     -webkit-border-radius: 25px;

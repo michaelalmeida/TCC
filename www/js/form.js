@@ -1,5 +1,5 @@
 function salvarNome() {
     var paciente = document.getElementById("pacienteNome").value;
     localStorage.setItem("paciente", paciente);
-    window.location.replace("index.html");
+    document.getElementById("form").style.display = "none";
 }

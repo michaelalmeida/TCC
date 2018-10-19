@@ -84,7 +84,7 @@ playGame.prototype = {
     //game.input.onDown.add(this.startLevel, this);
     this.gameOver = false;
     
-    button = game.add.button(645, 490, 'button', this.openPlayerName, this, 1, 0, 0);
+    button = game.add.button(645, game.height / 2, 'button', this.openPlayerName, this, 1, 0, 0);
     
     //winImage.alpha = 0;
     // Volume bar
@@ -167,7 +167,7 @@ playGame.prototype = {
     }
   },
   openPlayerName : function() {
-    window.location.replace("form.html");
+    document.getElementById("form").style.display = "block";
   },
   update: function () {
     // Call the engineOn fuction
