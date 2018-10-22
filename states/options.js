@@ -24,8 +24,10 @@ Options.prototype = {
 
     game.add.sprite(0, 0, 'options-bg');
     game.add.existing(this.titleText);
-
-    this.addMenuOption('VOLTAR', function () {
+    this.addMenuOption('Exportar', function () {
+      game.state.start("GameMenu");
+    });
+    this.addMenuOption('Voltar', function () {
       game.state.start("GameMenu");
     });
   }

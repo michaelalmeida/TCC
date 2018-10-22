@@ -1,5 +1,5 @@
 var Splash = function () {};
-
+var player = "";
 Splash.prototype = {
 
   loadScripts: function () {
@@ -14,11 +14,11 @@ Splash.prototype = {
   },
 
   loadBgm: function () {
-    // thanks Kevin Macleod at http://incompetech.com/
+
     game.load.audio('dangerous', 'assets/bgm/mainTheme.mp3');
     game.load.audio('exit', '');
   },
-  // varios freebies found from google image search
+
   loadImages: function () {
     game.load.image('menu-bg', 'assets/images/menu-bg.jpg');
     game.load.image('options-bg', 'assets/images/options-bg.jpg');
@@ -73,6 +73,9 @@ Splash.prototype = {
     this.addGameStates();
     this.addGameMusic();
 
+    player = prompt("DIGITE SEU NOME: ", "name");
+    localStorage.setItem("playerName", player);
+    
     setTimeout(function () {
       game.state.start("GameMenu");
     }, 1000);

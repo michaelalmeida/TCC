@@ -27,14 +27,11 @@ GameOver.prototype = {
     txt.events.onInputUp.add(callback, this);
     txt.events.onInputOver.add(onOver, this);
     txt.events.onInputOut.add(onOut, this);
-
     this.optionCount ++;
-
-
   },
 
   create: function () {
-    game.add.sprite(0, 0, 'gameover-bg');
+    var bg = game.add.sprite(0, 0, 'gameover-bg');
     var titleStyle = { font: 'bold 60pt TheMinion', fill: '#FDFFB5', align: 'center'};
     var text = game.add.text(game.world.centerX, 100, " ", titleStyle);
     text.setShadow(3, 3, 'rgba(0,0,0,0.5)', 5);

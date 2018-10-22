@@ -1,6 +1,5 @@
 var GameMenu = function() {};
 
-
 GameMenu.prototype = {
 
   menuConfig: {
@@ -34,7 +33,7 @@ GameMenu.prototype = {
     this.addMenuOption('Iniciar', function () {
       game.state.start("Game");
     });
-    this.addMenuOption('Diario de bordo', function () {
+    this.addMenuOption('Diario de bordo de: ' + localStorage.getItem("playerName"), function () {
       game.state.start("Options");
     });
   }

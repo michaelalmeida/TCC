@@ -1,0 +1,79 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-battery-status": {
+            "PACKAGE_NAME": "br.eti.michael.tcc.jogoaviao"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "br.eti.michael.tcc.jogoaviao"
+        },
+        "cordova-plugin-media-capture": {
+            "PACKAGE_NAME": "br.eti.michael.tcc.jogoaviao"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "br.eti.michael.tcc.jogoaviao"
+        },
+        "cordova-plugin-contacts": {
+            "PACKAGE_NAME": "br.eti.michael.tcc.jogoaviao"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "br.eti.michael.tcc.jogoaviao"
+        },
+        "cordova-plugin-device-motion": {
+            "PACKAGE_NAME": "br.eti.michael.tcc.jogoaviao"
+        },
+        "cordova-plugin-device-orientation": {
+            "PACKAGE_NAME": "br.eti.michael.tcc.jogoaviao"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "br.eti.michael.tcc.jogoaviao"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "br.eti.michael.tcc.jogoaviao"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "br.eti.michael.tcc.jogoaviao"
+        },
+        "cordova-plugin-globalization": {
+            "PACKAGE_NAME": "br.eti.michael.tcc.jogoaviao"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "br.eti.michael.tcc.jogoaviao"
+        },
+        "cordova-plugin-media": {
+            "PACKAGE_NAME": "br.eti.michael.tcc.jogoaviao"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "br.eti.michael.tcc.jogoaviao"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "br.eti.michael.tcc.jogoaviao"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "br.eti.michael.tcc.jogoaviao"
+        },
+        "cordova-plugin-vibration": {
+            "PACKAGE_NAME": "br.eti.michael.tcc.jogoaviao"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "br.eti.michael.tcc.jogoaviao"
+        },
+        "cordova-plugin-android-permissions": {
+            "PACKAGE_NAME": "br.eti.michael.tcc.jogoaviao"
+        },
+        "cordova-plugin-screen-orientation": {
+            "PACKAGE_NAME": "br.eti.michael.tcc.jogoaviao"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "br.eti.michael.tcc.jogoaviao"
+        }
+    }
+}

@@ -27,22 +27,14 @@ Game.prototype = {
     txt.events.onInputUp.add(callback, this);
     txt.events.onInputOver.add(onOver, this);
     txt.events.onInputOut.add(onOut, this);
-
     this.optionCount ++;
-
-
   },
 
   create: function () {
     this.stage.disableVisibilityChange = false;
-    game.add.sprite(0, 0, 'stars');
+    game.add.sprite(0, 0, 'splash');
     this.addMenuOption('FASE 01', function (e) {
       this.game.state.start("level1");
-      gameOptions = {
-        playSound: false,
-        playMusic: false
-      },
-      musicPlayer;
     });
     this.addMenuOption('FASE 02', function (e) {
       this.game.state.start("GameOver");

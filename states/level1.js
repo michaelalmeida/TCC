@@ -1,5 +1,5 @@
 // Global variables
-var game;
+//var game;
 var mic; //P5 Lib
 var vol;
 var counter = 0;
@@ -15,13 +15,13 @@ var dmy =  day + "/" + month + "/" + year;
 
 var database = firebase.database();
 
-var level1 = function (game) { };
+var level1 = function () { };
 
-window.onload = function () {
-  game = new Phaser.Game(960, 640, Phaser.AUTO, "");
-  game.state.add("level1", level1);
-  game.state.start("level1");
-}
+// window.onload = function () {
+//   game = new Phaser.Game(960, 640, Phaser.AUTO, "");
+//   game.state.add("level1", level1);
+//   game.state.start("level1");
+// }
 //This is a object
 level1.prototype = {
   // This is a method
@@ -73,7 +73,7 @@ level1.prototype = {
     this.airplane.anchor.set(0.5);
   
     // The initial image for start the game
-    playImg = game.add.sprite(50, game.height / 2, "play");
+    playImg = game.add.sprite(game.width / 4, game.height / 2, "play");
     playImg.anchor.setTo(-0.5, 0.5);
     playImg.alpha = 0;
     game.add.tween(playImg).to({ alpha: 1 }, 500, "Linear", true);
@@ -195,7 +195,7 @@ level1.prototype = {
           // Save the score
           this.saveDb(paciente, dmy, counter, "não", score);
           //this.text.setText("Você perdeu! Levou:" + counter);
-          game.state.start("level1");
+          game.state.start("GameOver");
           score = 0;
         }, this);
       }, null, this);
@@ -210,7 +210,7 @@ level1.prototype = {
         this.winGame();
         // Play next
         game.time.events.add(Phaser.Timer.SECOND * 10, function () {
-          game.state.start("level1");
+          game.state.start("GameOver");
           score = 0;
         }, this);
       }
