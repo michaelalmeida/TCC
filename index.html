@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="css/estilo.css" />
+        <!--<script type="text/javascript" src="cordova.js"></script>-->
+        <script src="https://www.gstatic.com/firebasejs/5.5.4/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.5.4/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.5.4/firebase-database.js"></script>
+        <!-- Firebase -->
+        <script>
+        // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyBuYHKlIgP2KynTS1uiajI7RdYqVcygHlw",
+                authDomain: "api-8264991054225905631-382607.firebaseapp.com",
+                databaseURL: "https://api-8264991054225905631-382607.firebaseio.com",
+                projectId: "api-8264991054225905631-382607",
+                storageBucket: "",
+                messagingSenderId: "629194007279"
+            };
+            firebase.initializeApp(config);
+        </script>
+        <title>Falando pelos cotovelos</title>
+    </head>
+    <body>
+        <main id="game"></main>
+        <script src="vendor/phaser.js"></script>
+        <script src="main.js"></script>
+        <!-- <script type="text/javascript" src="cordova.js"></script> -->
+        <!-- <script type="text/javascript"src="phaser.min.js"></script> -->
+        <script type="text/javascript" src="js/checkpermission.js"></script>
+        <script type="text/javascript" src="assets/p5/p5.js"></script>
+        <script type="text/javascript" src="assets/p5/p5.sound.js"></script>
+        <script type="text/javascript" src ="js/form.js"></script>
+        <!-- <script type="text/javascript" src ="game.js"></script> -->
+    </body>
+</html>
