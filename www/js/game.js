@@ -84,7 +84,7 @@ playGame.prototype = {
     //game.input.onDown.add(this.startLevel, this);
     this.gameOver = false;
     
-    button = game.add.button((game.height / 2)-5), 480, 'button', this.openPlayerName, this, 1, 0, 0);
+    button = game.add.button((game.height / 2) - 5, 490, 'button', this.openPlayerName, this, 1, 0, 0);
     
     //winImage.alpha = 0;
     // Volume bar
